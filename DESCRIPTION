@@ -6,5 +6,4 @@ Description: A set of functions to create and interact with dynamic documents an
 Depends: tools
 Maintainer:  Jeff Gentry <jgentry@jimmy.harvard.edu>
 License: LGPL
-ReleaseLevel: devel
 
