@@ -1,24 +1,21 @@
-vignette <- function(..., list=character(0),
-                     package=.packages(all.available=TRUE),
-                     .lib.loc=.libPaths(), filter=baseVigFilter,
-                     vigDescFun=baseVigDesc,
-                     verbose=getOption("verbose"),
-                     vigPath="/doc", character.only=FALSE) {
+vignette <- function(package=.packages(all.available=TRUE),
+                     libs, filter, vigDescFun=baseVigDesc,
+                     vigPath="/doc") {
     sQuote <- function(s) paste("`", s, "'", sep = "")
-    names <- c(as.character(substitute(list(...))[-1]), list)
-    if (!missing(package)) {
-        if( !character.only)
-            if (is.name(y <- substitute(package)))
-                package <- as.character(y)
-    }
+    hasPackage <- FALSE
+
+    if (missing(libs))
+        libs <- .libPaths()
+
+    if( !missing(package) )
+        hasPackage <- TRUE
+
     ## Get list for packages
-    paths <- .find.package(package, .lib.loc, verbose = verbose)
-    if (is.null(.lib.loc))
-        paths <- c(.path.package(package, TRUE), getwd(), paths)
+    paths <- .find.package(package, libs)
     paths <- unique(paths[file.exists(paths)])
     novigs <- !file.exists(file.path(paths, vigPath))
     if (any(novigs)) {
-        if (!missing(package) && (length(package) > 0)) {
+        if (hasPackage && (length(package) > 0)) {
             packagesWithNoVigs <- package[package %in% sapply(paths[novigs],
                 basename)]
             if (length(packagesWithNoVigs) > 1) {
@@ -33,65 +30,16 @@ vignette <- function(..., list=character(0),
         paths <- paths[!novigs]
     }
 
-    vigList <- list()
-    for (i in seq(along=paths)) {
-        vigList <- c(vigList,getPkgVigList(paths[i],vigDescFun))
-    }
+    vigList <- lapply(paths, function(x) getPkgVigList(x, vigDescFun))
+    vigList <- unlist(vigList, recursive=FALSE)
     class(vigList) <- "pkgFileList"
-    vigList <- filter(vigList)
 
+    ##filter if the user has specified one
+    if( !missing(filter) )
+	    vigList <- filter(vigList)
 
-    if (length(names) == 0) {
-        ## If no names are used, just getting a listing of what is
-        ## available.
-        return(vigList)
-    }
-
-    names <- .transformNames(names, vigList)
-    .loadNamedVigs(names, paths, vigPath, verbose, sQuote)
+    return(vigList)
 }
-
-.loadNamedVigs <- function(names, paths, vigPath, verbose, sQuote) {
-    paths <- file.path(paths,vigPath)
-    fsep <- .Platform$file.sep
-    for (name in names) {
-        if (is.na(name)) {
-            print(paste("Vignette",name,"does not have a PDF version available."))
-            next
-        }
-        files <- NULL
-        for (j in seq(along=paths)) {
-            files <- c(files, list.files(paths[j], full=TRUE))
-        }
-        files <- gsub("\/\/","\/",files)
-        files <- files[grep(name, files)]
-        found <- FALSE
-        if (length(files) > 0) {
-            subpre <- paste(".*", fsep, sep="")
-            for (file in files) {
-                if (verbose)
-                    cat("name=", name, ":\t file= ...", fsep, sub(subpre,
-                                            "", file), "::\t", sep = "")
-                if (found)
-                    break
-                found <- TRUE
-                if (sub(subpre, "", file) != basename(file))
-                    found <- FALSE
-                else {
-                    ## Display file
-                    openPDF(file)
-                }
-                if (verbose) {
-                    cat(if (!found) "*NOT* ", "found\n")
-                }
-            }
-        }
-        if (!found)
-            warning(paste("Vignette", sQuote(name), "not found"))
-    }
-    invisible(names)
-}
-
 
 getPkgVigList <- function(pkg,vigDescFun=baseVigDesc,
                           vigPath="/doc/",vigExt="\\.(Rnw|Snw|rnw|snw)$",
@@ -249,10 +197,6 @@ getVigInfoNames <- function(el,nmVec) {
     return(nmVec)
 }
 
-
-baseVigFilter <- function(vigList) {
-    return(vigList)
-}
 
 baseVigDesc <- function(vigInfo) {
     ## Passed a vignette info list, returns a vigInfo list with
