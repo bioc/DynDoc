@@ -40,6 +40,9 @@ Objects can be created by calls of the form \code{new("chunkList", ...)}.
       the code in a given \code{codeChunk} contained by this object }
     \item{summary}{\code{signature(object = "chunkList")}: A less
       verbose display of information about the object}
+    \item{evalChunk}{\code{signature(object = "chunkList",
+	pos="numeric")}: Evaluates the code chunk at the specified
+      position in the \code{chunkList} object}
   }
 }
 \author{Jeff Gentry}

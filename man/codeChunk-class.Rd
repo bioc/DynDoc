@@ -25,6 +25,10 @@ Objects can be created by calls of the form \code{new("codeChunk", ...)}.
 
 \section{Methods}{
   \describe{
+    \item{evalChunk}{\code{signature(object = "codeChunk",
+	env="environment")}: Will evaluate the code in the code chunk
+      using the environment specified.  If no environment is specified,
+      .GlobalEnv is used.}
     \item{show}{\code{signature(object = "codeChunk")}: Displays the
       information for the code chunk}
     \item{chunk<-}{\code{signature(object = "codeChunk",

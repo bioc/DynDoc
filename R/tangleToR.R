@@ -101,6 +101,45 @@ tangleToRFinish <- function(object, error=FALSE)
     setMethod("getOptions", "codeChunk", function(object)
               SweaveOptions(object)@options, where=where)
 
+    if (is.null(getGeneric("evalChunk")))
+        setGeneric("evalChunk", function(object, ...)
+                   standardGeneric("evalChunk"), where=where)
+    setMethod("evalChunk", "codeChunk", function(object, env) {
+        if (missing(env))
+            env <- .GlobalEnv
+        chunk <- chunk(object)
+        chunkexps <- parse(text=chunk)
+        outVec <- character()
+        if (length(chunkexps) == 0)
+            return(outVec)
+        tmpCon <- textConnection("output","w")
+        sink(file=tmpCon)
+        for (nce in 1:length(chunkexps)) {
+            ce <- chunkexps[[nce]]
+            dce <- deparse(ce, width.cutoff=0.75*getOption("width"))
+            cat(getOption("prompt"),
+                paste(dce, collapse=paste("\n",
+                           getOption("continue"), sep="")),"\n")
+            out <- try(.Internal(eval.with.vis(ce,
+                                               env,
+                                               NULL)))
+             if(inherits(out,"try-error")) {
+                 sink()
+                 close(tmpCon)
+                 stop(out)
+             }
+            if(out$visible) {
+                print(out$value)
+            }
+            cat("\n")
+        }
+        sink()
+        close(tmpCon)
+        output <- paste(output,collapse="\n")
+        return(paste(output,"\n",sep=""))
+    }, where=where)
+
+
     setMethod("show","codeChunk", function(object) {
         cat("Code chunk",object@chunkName,":\n",
             paste(object@chunk,collapse="\n"),"\n")
@@ -167,39 +206,12 @@ tangleToRFinish <- function(object, error=FALSE)
         unlist(lapply(object@chunks,chunk)), where=where)
 
     if (is.null(getGeneric("evalChunk")))
-        setGeneric("evalChunk", function(object, pos)
+        setGeneric("evalChunk", function(object, ...)
                    standardGeneric("evalChunk"), where=where)
     setMethod("evalChunk","chunkList", function(object, pos) {
-        chunk <- chunk(getChunk(object, pos))
-        chunkexps <- parse(text=chunk)
-        outVec <- character()
-        if (length(chunkexps) == 0)
-            return(outVec)
-        tmpCon <- textConnection("output","w")
-        sink(file=tmpCon)
-        for (nce in 1:length(chunkexps)) {
-            ce <- chunkexps[[nce]]
-            dce <- deparse(ce, width.cutoff=0.75*getOption("width"))
-            cat(getOption("prompt"),
-                paste(dce, collapse=paste("\n",
-                           getOption("continue"), sep="")),"\n")
-            out <- try(.Internal(eval.with.vis(ce,
-                                               object@evalEnv,
-                                               NULL)))
-             if(inherits(out,"try-error")) {
-                 sink()
-                 close(tmpCon)
-                 stop(out)
-             }
-            if(out$visible) {
-                print(out$value)
-            }
-            cat("\n")
-        }
-        sink()
-        close(tmpCon)
-        output <- paste(output,collapse="\n")
-        return(paste(output,"\n",sep=""))
+        chunk <- getChunk(object, pos)
+        z <- evalChunk(chunk, evalEnv(object))
+        z
     }, where=where)
 }
 
