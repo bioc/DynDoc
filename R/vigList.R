@@ -144,9 +144,12 @@ print.pkgFileList <- function(x,...) {
             out <- x[[i]]$OutString
             writeLines(paste(ifelse(first,"","\n\n"),out,sep=""),outConn)
         }
+        VIE = ifelse(is.null(x[[i]]$VignetteIndexEntry), "",
+                 x[[i]]$VignetteIndexEntry)
+        VT  = ifelse(is.null(x[[i]]$VignetteTitle), "",
+                 x[[i]]$VignetteTitle)
 
-        z <- try(writeLines(formatDL(x[[i]]$VignetteIndexEntry,
-                                     x[[i]]$VignetteTitle), outConn))
+        z <- try(writeLines(formatDL(VIE, VT),outConn))
 
         if (inherits(z, "try-error")) {
             stop("Vignette ", x[[i]]$vigPath,
