@@ -15,7 +15,7 @@ getVignetteCode <- function(vigPath,evalEnv=new.env()) {
         vigCode <- new("vignetteCode",chunkList=chunkList,
                        path=vigPath,
                        depends=vigDeps,
-                       package=vigPkg,
+                       vigPackage=vigPkg,
                        evalEnv=evalEnv)
         return(vigCode)
     }
@@ -30,14 +30,14 @@ editVignetteCode <- function(vigCode, pos, code) {
                   chunkList=chunks,
                   path=path(vigCode),
                   depends=getDepends(vigCode),
-                  package=package(vigCode),
+                  vigPackage=vigPackage(vigCode),
                   evalEnv=copyEnv(evalEnv(vigCode)))
     return(newVig)
 }
 
 setClass("vignetteCode", representation(chunkList="chunkList",
                                         path="character",
-                                        package="character",
+                                        vigPackage="character",
                                         depends="character",
                                         evalEnv="environment"))
 
@@ -137,12 +137,12 @@ setMethod("show","vignetteCode", function(object) {
 
 
 .initDynDocMethods <- function(where) {
-        setGeneric("package", function(object)
-                   standardGeneric("package"), where=where)
+    setGeneric("vigPackage", function(object)
+               standardGeneric("vigPackage"), where=where)
 
-    setMethod("package", "vignetteCode", function(object)
-              object@package, where=where)
+    setMethod("vigPackage", "vignetteCode", function(object)
+              object@vigPackage, where=where)
 
-    setMethod("package", "Vignette", function(object)
-              object@package, where=where)
+    setMethod("vigPackage", "Vignette", function(object)
+              object@vigPackage, where=where)
 }
