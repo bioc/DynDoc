@@ -154,9 +154,13 @@ getVigInfo <- function(vig,pkg=NULL, vigDescFun=baseVigDesc, pkgVers=TRUE) {
     if (length(line) > 0) {
         splitLine <- strsplit(file[line],"{")
         tmpTitle <- transformVigInfoLine(splitLine[[1]])
-        ## Remove any latex
-        tmpTitle <- gsub("\\\\\\w*[[:space:]]","",tmpTitle)
-        newLst$VignetteTitle <- tmpTitle
+        if ((is.null(tmpTitle))||(is.na(tmpTitle)))
+            newLst$VignetteTitle <- "Untitled"
+        else {
+            ## Remove any latex
+            tmpTitle <- gsub("\\\\\\w*[[:space:]]","",tmpTitle)
+            newLst$VignetteTitle <- tmpTitle
+        }
     }
     else {
         newLst$VignetteTitle <- "Untitled"
