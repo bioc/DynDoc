@@ -32,7 +32,8 @@ vignette <- function(package=.packages(all.available=TRUE),
 
     vigList <- lapply(paths, function(x) getPkgVigList(x, vigDescFun))
     vigList <- unlist(vigList, recursive=FALSE)
-    class(vigList) <- "pkgFileList"
+    if (! is.null(vigList))
+        class(vigList) <- "pkgFileList"
 
     ##filter if the user has specified one
     if( !missing(filter) )
