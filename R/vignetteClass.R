@@ -49,7 +49,7 @@ getVignette <- function(vigPath,eval=TRUE) {
                       suggests=vigInfo$Suggests,
                       codeChunks=chunkList,
                       package=vigPkg,
-                      pkgVersion=vigPkgVers
+                      vigPkgVersion=vigPkgVers
                       )
 
         return(vigObj)
@@ -58,15 +58,15 @@ getVignette <- function(vigPath,eval=TRUE) {
 }
 
     setClass("Vignette", representation(package="character",
-                                        pkgVersion="VersionNumber"),
+                                        vigPkgVersion="VersionNumber"),
              contains="DynDoc")
 
 
-    if (is.null(getGeneric("pkgVersion")))
-        setGeneric("pkgVersion", function(object)
-                   standardGeneric("pkgVersion"))
-    setMethod("pkgVersion", "Vignette", function(object)
-              object@pkgVersion)
+    if (is.null(getGeneric("vigPkgVersion")))
+        setGeneric("vigPkgVersion", function(object)
+                   standardGeneric("vigPkgVersion"))
+    setMethod("vigPkgVersion", "Vignette", function(object)
+              object@vigPkgVersion)
 
 
 
