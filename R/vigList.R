@@ -225,19 +225,3 @@ getVignetteHeader <- function(vig, field) {
     else
         return(list())
 }
-
-vignetteDepends <- function(vig, recursive=TRUE, local=TRUE,
-                            reduce=TRUE) {
-    ## Will extract a list of package dependencies for a vignette
-
-    vigDeps <- getVignetteHeader(vig, "VignetteDepends")
-    if ((length(vigDeps) == 1) && (!is.na(vigDeps))) {
-        ## Should have a valid field here
-        vigDeps <- strsplit(vigDeps[[1]],",[[:space:]]*")[[1]]
-        return(buildPkgDepList(vigDeps, recursive, local, reduce))
-    }
-    else
-        stop("Invalid VignetteDepends field in vignette file ",
-             vig)
-}
-
