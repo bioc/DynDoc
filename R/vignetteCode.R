@@ -35,113 +35,115 @@ editVignetteCode <- function(vigCode, pos, code) {
     return(newVig)
 }
 
-.initVignetteCode <- function(where) {
-    setClass("vignetteCode", representation(chunkList="chunkList",
-                                            path="character",
-                                            package="character",
-                                            depends="character",
-                                            evalEnv="environment"),
-             where=where)
+setClass("vignetteCode", representation(chunkList="chunkList",
+                                        path="character",
+                                        package="character",
+                                        depends="character",
+                                        evalEnv="environment"))
 
-    if (is.null(getGeneric("path")))
-        setGeneric("path", function(object)
-                   standardGeneric("path"), where=where)
-    setMethod("path", "vignetteCode", function(object)
-              object@path, where=where)
+if (is.null(getGeneric("path")))
+    setGeneric("path", function(object)
+               standardGeneric("path"))
+setMethod("path", "vignetteCode", function(object)
+          object@path)
 
-    if (is.null(getGeneric("package")))
-        setGeneric("package", function(object)
-                   standardGeneric("package"), where=where)
-    setMethod("package", "vignetteCode", function(object)
-              object@package, where=where)
+if (is.null(getGeneric("getDepends")))
+    setGeneric("getDepends", function(object)
+               standardGeneric("getDepends"))
+setMethod("getDepends", "vignetteCode", function(object)
+          object@depends)
 
-    if (is.null(getGeneric("getDepends")))
-        setGeneric("getDepends", function(object)
-                   standardGeneric("getDepends"), where=where)
-    setMethod("getDepends", "vignetteCode", function(object)
-              object@depends, where=where)
+if (is.null(getGeneric("chunks")))
+    setGeneric("chunks", function(object)
+               standardGeneric("chunks"))
+setMethod("chunks", "vignetteCode", function(object)
+          chunks(object@chunkList))
 
-    if (is.null(getGeneric("chunks")))
-        setGeneric("chunks", function(object)
-                   standardGeneric("chunks"), where=where)
-    setMethod("chunks", "vignetteCode", function(object)
-              chunks(object@chunkList), where=where)
+if (is.null(getGeneric("chunkList")))
+    setGeneric("chunkList", function(object)
+               standardGeneric("chunkList"))
+setMethod("chunkList", "vignetteCode", function(object)
+          object@chunkList)
 
-    if (is.null(getGeneric("chunkList")))
-        setGeneric("chunkList", function(object)
-                   standardGeneric("chunkList"), where=where)
-    setMethod("chunkList", "vignetteCode", function(object)
-              object@chunkList, where=where)
+if (is.null(getGeneric("setChunk<-")))
+    setGeneric("setChunk<-", function(object, pos, value)
+               standardGeneric("setChunk<-"))
+setReplaceMethod("setChunk","vignetteCode",
+                 function(object, pos,value) {
+                     setChunk(object@chunkList, pos) <- value
+                     object
+                 })
 
-    if (is.null(getGeneric("setChunk<-")))
-        setGeneric("setChunk<-", function(object, pos, value)
-                   standardGeneric("setChunk<-"), where=where)
-    setReplaceMethod("setChunk","vignetteCode",
-                     function(object, pos,value) {
-                         setChunk(object@chunkList, pos) <- value
-                         object
-                     }, where=where)
+if (is.null(getGeneric("evalEnv")))
+    setGeneric("evalEnv", function(object)
+               standardGeneric("evalEnv"))
+setMethod("evalEnv", "vignetteCode", function(object)
+          object@evalEnv)
 
-    if (is.null(getGeneric("evalEnv")))
-        setGeneric("evalEnv", function(object)
-                   standardGeneric("evalEnv"), where=where)
-    setMethod("evalEnv", "vignetteCode", function(object)
-              object@evalEnv, where=where)
+if (is.null(getGeneric("numChunks")))
+    setGeneric("numChunks", function(object)
+               standardGeneric("numChunks"))
+setMethod("numChunks","vignetteCode", function(object)
+          numChunks(object@chunkList))
+if (is.null(getGeneric("getChunk")))
+    setGeneric("getChunk", function(object, num)
+               standardGeneric("getChunk"))
+setMethod("getChunk","vignetteCode", function(object, num)
+          getChunk(object@chunkList, num))
 
-    if (is.null(getGeneric("numChunks")))
-        setGeneric("numChunks", function(object)
-                   standardGeneric("numChunks"), where=where)
-    setMethod("numChunks","vignetteCode", function(object)
-              numChunks(object@chunkList), where=where)
-    if (is.null(getGeneric("getChunk")))
-        setGeneric("getChunk", function(object, num)
-                   standardGeneric("getChunk"), where=where)
-    setMethod("getChunk","vignetteCode", function(object, num)
-        getChunk(object@chunkList, num), where=where)
-
-    if (is.null(getGeneric("evalChunk")))
-        setGeneric("evalChunk", function(object, pos)
-                   standardGeneric("evalChunk"), where=where)
-    setMethod("evalChunk","vignetteCode", function(object, pos) {
-        chunk <- chunk(getChunk(object, pos))
-        chunkexps <- parse(text=chunk)
-        outVec <- character()
-        if (length(chunkexps) == 0)
-            return(outVec)
-        tmpCon <- textConnection("output","w")
-        sink(file=tmpCon)
-        for (nce in 1:length(chunkexps)) {
-            ce <- chunkexps[[nce]]
-            dce <- deparse(ce, width.cutoff=0.75*getOption("width"))
-            cat(getOption("prompt"),
-                paste(dce, collapse=paste("\n",
-                           getOption("continue"), sep="")),"\n")
-            out <- try(.Internal(eval.with.vis(ce,
-                                               object@evalEnv,
-                                               NULL)))
-             if(inherits(out,"try-error")) {
-                 sink()
-                 close(tmpCon)
-                 stop(out)
-             }
-            if(out$visible) {
-                print(out$value)
-            }
-            cat("\n")
+if (is.null(getGeneric("evalChunk")))
+    setGeneric("evalChunk", function(object, ...)
+               standardGeneric("evalChunk"))
+setMethod("evalChunk","vignetteCode", function(object, pos) {
+    chunk <- chunk(getChunk(object, pos))
+    chunkexps <- parse(text=chunk)
+    outVec <- character()
+    if (length(chunkexps) == 0)
+        return(outVec)
+    tmpCon <- textConnection("output","w")
+    sink(file=tmpCon)
+    for (nce in 1:length(chunkexps)) {
+        ce <- chunkexps[[nce]]
+        dce <- deparse(ce, width.cutoff=0.75*getOption("width"))
+        cat(getOption("prompt"),
+            paste(dce, collapse=paste("\n",
+                       getOption("continue"), sep="")),"\n")
+        out <- try(.Internal(eval.with.vis(ce,
+                                           object@evalEnv,
+                                           NULL)))
+        if(inherits(out,"try-error")) {
+            sink()
+            close(tmpCon)
+            stop(out)
         }
-        sink()
-        close(tmpCon)
-        output <- paste(output,collapse="\n")
-        paste(output,"\n",sep="")
-    }, where=where)
+        if(out$visible) {
+            print(out$value)
+        }
+        cat("\n")
+    }
+    sink()
+    close(tmpCon)
+    output <- paste(output,collapse="\n")
+    paste(output,"\n",sep="")
+})
 
-    setMethod("summary","vignetteCode", function(object) {
-        summary(object@chunkList)
-    }, where=where)
+setMethod("summary","vignetteCode", function(object) {
+    summary(object@chunkList)
+})
 
-    setMethod("show","vignetteCode", function(object) {
-        show(object@chunkList)
-    }, where=where)
+setMethod("show","vignetteCode", function(object) {
+    show(object@chunkList)
+})
 
+
+.initDynDocMethods <- function(where) {
+    if (is.null(getGeneric("package")))
+    setGeneric("package", function(object)
+               standardGeneric("package"), where=where)
+
+    setMethod("package", "vignetteCode", function(object)
+          object@package, where=where)
+
+    setMethod("package", "Vignette", function(object)
+              object@package, where=where)
 }
-
