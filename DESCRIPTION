@@ -3,7 +3,7 @@ Title:  Dynamic document tools
 Version: 0.4
 Author: R. Gentlemman, Jeff Gentry
 Description: A set of functions to create and interact with dynamic documents and vignettes.
-Depends: Biobase, reposTools
+Depends: Biobase
 Maintainer:  Jeff Gentry <jgentry@jimmy.harvard.edu>
 License: LGPL
 
