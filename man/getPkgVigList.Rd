@@ -45,8 +45,8 @@ getVigInfo(vig,pkg=NULL, vigDescFun=baseVigDesc, pkgVers=TRUE)
 \author{Jeff Gentry}
 \seealso{\code{\link{vignette}}}
 \examples{
-   bioPath <- .path.package("Biobase")
-   vigList <- getPkgVigList(bioPath)
+   dynPath <- .path.package("DynDoc")
+   vigList <- getPkgVigList(dynPath)
    vigList
 }
 \keyword{utilities}
