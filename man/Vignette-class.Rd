@@ -1,8 +1,8 @@
 \name{Vignette-class}
 \docType{class}
 \alias{Vignette-class}
-\alias{pkgVersion}
-\alias{pkgVersion,Vignette-method}
+\alias{vigPkgVersion}
+\alias{vigPkgVersion,Vignette-method}
 \alias{vigPackage,Vignette-method}
 \title{A Class To Represent Vignettes}
 \description{This is a class that will represent a vignette file in R,
@@ -11,7 +11,7 @@
   \describe{
     \item{\code{package}:}{Object of class \code{"character"} The
       package that this vignette is associated with}
-    \item{\code{pkgVersion}:}{Object of class \code{"VersionNumber"} The
+    \item{\code{vigPkgVersion}:}{Object of class \code{"VersionNumber"} The
     version number for this vignette's package}
     \item{\code{indexEntry}:}{Object of class \code{"character", from
 	class "DynDoc"} The VignetteIndexEntry field from the document file}
@@ -40,7 +40,7 @@ Class \code{"DynDoc"}, directly.
   \describe{
     \item{package}{\code{signature(object = "Vignette")}: Retrieves the
       package name that this vignette is associated with}
-    \item{pkgVersion}{\code{signature(object = "Vignette")}: Retrieves
+    \item{vigPkgVersion}{\code{signature(object = "Vignette")}: Retrieves
       the version of the package that this vignette is associated with}
   }
 }
