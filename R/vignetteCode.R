@@ -57,10 +57,10 @@ editVignetteCode <- function(vigCode, pos, code) {
     setMethod("package", "vignetteCode", function(object)
               object@package, where=where)
 
-    if (is.null(getGeneric("depends")))
-        setGeneric("depends", function(object)
-                   standardGeneric("depends"), where=where)
-    setMethod("depends", "vignetteCode", function(object)
+    if (is.null(getGeneric("getDepends")))
+        setGeneric("getDepends", function(object)
+                   standardGeneric("getDepends"), where=where)
+    setMethod("getDepends", "vignetteCode", function(object)
               object@depends, where=where)
 
     if (is.null(getGeneric("chunks")))

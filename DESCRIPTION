@@ -1,6 +1,6 @@
 Package: DynDoc
 Title:  Dynamic document tools 
-Version: 0.1
+Version: 0.2
 Author: R. Gentlemman, Jeff Gentry
 Description: A set of functions to create and interact with dynamic documents and vignettes.
 Depends: Biobase, reposTools
