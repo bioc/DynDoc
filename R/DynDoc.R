@@ -8,7 +8,6 @@
 
 
 .initDynDoc <- function(where) {
-
     setClass("DynDoc", representation(indexEntry="character",
                                         title="character",
                                         path="character",

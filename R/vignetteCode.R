@@ -36,8 +36,6 @@ editVignetteCode <- function(vigCode, pos, code) {
 }
 
 .initVignetteCode <- function(where) {
-    setGeneric("vignetteCode", function(object)
-               standardGeneric("vignetteCode"), where=where)
     setClass("vignetteCode", representation(chunkList="chunkList",
                                             path="character",
                                             package="character",

@@ -121,7 +121,7 @@ getVigInfo <- function(vig,pkg=NULL, vigDescFun=baseVigDesc, pkgVers=TRUE) {
         newLst$PDFpath <- pdfFile
     }
     else {
-        newLst$PDFpath <- NULL
+        newLst$PDFpath <- character()
     }
 
     return(newLst)
