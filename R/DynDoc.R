@@ -90,7 +90,7 @@
                    standardGeneric("setChunk<-"), where=where)
     setReplaceMethod("setChunk","DynDoc",
                      function(object, pos,value) {
-                         setChunk(object@codeChunks, pos) <- value
+                         setChunk(object@codeChunks,pos) <- value
                          object
                      }, where=where)
     if (is.null(getGeneric("numChunks")))
@@ -103,6 +103,12 @@
                    standardGeneric("getChunk"), where=where)
     setMethod("getChunk","DynDoc", function(object, num)
         getChunk(object@codeChunks, num), where=where)
+
+    if (is.null(getGeneric("evalChunk")))
+        setGeneric("evalChunk", function(object, pos)
+                   standardGeneric("evalChunk"), where=where)
+     setMethod("evalChunk","DynDoc",function(object,pos)
+               evalChunk(object@codeChunks,pos), where=where)
 
     ###
     ### Output methods
