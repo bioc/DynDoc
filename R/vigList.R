@@ -130,6 +130,8 @@ getVigInfo <- function(vig,pkg=NULL, vigDescFun=baseVigDesc, pkgVers=TRUE) {
     listNames <- vector()
     listNames <- unlist(lapply(splitLines, getVigInfoNames, listNames))
     newLst <- lapply(splitLines,transformVigInfoLine)
+    ## Remove any NAs from thinkgs like \VignetteXXX{}
+    newLst <- lapply(newLst,function(x){if(is.na(x)) NULL else x})
     names(newLst) <- listNames
 
     ## Add in the path starting from the package base
@@ -167,7 +169,7 @@ getVigInfo <- function(vig,pkg=NULL, vigDescFun=baseVigDesc, pkgVers=TRUE) {
         newLst$PDFpath <- pdfFile
     }
     else {
-        newLst$PDFpath <- NA
+        newLst$PDFpath <- NULL
     }
 
     return(newLst)
