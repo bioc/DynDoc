@@ -60,8 +60,13 @@ getPkgVigList <- function(pkg,vigDescFun=baseVigDesc,
     if (length(vigPaths) == 0)
         return(NULL)
     for (i in seq(along=vigPaths)) {
-        pkgVigList[[i]] <- getVigInfo(vigPaths[i],pkg, vigDescFun,
-                                      pkgVers=pkgVers)
+        tmpVigEntry<- getVigInfo(vigPaths[i],pkg, vigDescFun,
+                                 pkgVers=pkgVers)
+        if (is.null(tmpVigEntry))
+            stop("Vignette ",vigPaths[i]," returned NULL from ",
+                 "getVigInfo().")
+        else
+            pkgVigList[[i]] <- tmpVigEntry
     }
     names(pkgVigList) <- vigs
     return(pkgVigList)
@@ -159,6 +164,7 @@ print.pkgFileList <- function(x,...) {
     else {
         ## !!! Mimic footer block of print.packageIQR
         close(outConn)
+
         file.show(outFile, delete.file=TRUE)
     }
     invisible(x)
