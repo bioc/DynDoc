@@ -8,9 +8,7 @@
 
 
 .initDynDoc <- function(where) {
-    if (is.null(getGeneric("DynDoc")))
-        setGeneric("DynDoc", function(object)
-                   standardGeneric("DynDoc"), where=where)
+
     setClass("DynDoc", representation(indexEntry="character",
                                         title="character",
                                         path="character",

@@ -58,9 +58,6 @@ getVignette <- function(vigPath,eval=TRUE) {
 }
 
 .initVignette <- function(where) {
-    if (is.null(getGeneric("Vignette")))
-        setGeneric("Vignette", function(object)
-                   standardGeneric("Vignette"), where=where)
     setClass("Vignette", representation(package="character",
                                         pkgVersion="VersionNumber"),
              contains="DynDoc", where=where)
