@@ -43,7 +43,7 @@ getVigInfo <- function(vig,pkg=NULL, vigDescFun=baseVigDesc, pkgVers=TRUE) {
              " does not appear to be a vignette file, ",
              "no vignette metadata available.")
 
-    splitLines <- strsplit(file[lines],"{")
+    splitLines <- strsplit(file[lines],"{", fixed=TRUE)
 
     listNames <- vector()
     listNames <- unlist(lapply(splitLines, getVigInfoNames, listNames))
@@ -70,7 +70,7 @@ getVigInfo <- function(vig,pkg=NULL, vigDescFun=baseVigDesc, pkgVers=TRUE) {
     ## figure out generic regexps for the string handling
     line <- grep("\\title{",file)
     if (length(line) > 0) {
-        splitLine <- strsplit(file[line],"{")
+        splitLine <- strsplit(file[line],"{", fixed=TRUE)
         tmpTitle <- transformVigInfoLine(splitLine[[1]])
         if ((is.null(tmpTitle))||(is.na(tmpTitle)))
             newLst$VignetteTitle <- "Untitled"
@@ -213,7 +213,7 @@ getVignetteHeader <- function(vig, field) {
         ## Remove the trailing '}'
         header <- gsub("}","",header)
         ## Now have format of 'tag{field'
-        splitHeader <- strsplit(header,"{")
+        splitHeader <- strsplit(header,"{", fixed=TRUE)
 
         headerList <- vector(mode="list",length=length(lines))
         for (i in 1:length(lines)) {
