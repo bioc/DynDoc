@@ -33,12 +33,5 @@ editVignetteCode(vigCode, pos, code)
 \seealso{\code{\link{Sweave}},\code{\link{vignetteCode}},\code{\link{tangleToR}}}
 
 \examples{
-    library(tools)
-    testfile <- file.path(.path.package("tools"),
-                           "Sweave", "Sweave-test-1.Rnw")
-    if (file.exists(testfile))
-      z <- getVignetteCode(testfile)
-    newCode <- "print(1:10)"
-    a <- editVignetteCode(z,1,newCode)
 }
 \keyword{utilities}

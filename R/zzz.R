@@ -1,6 +1,5 @@
 .First.lib <- function(libname,pkgname,where) {
-    #require("Biobase", quietly=TRUE) ||
-    #          stop("cannot load DynDoc without Biobase")
+    library(tools)
     where <- match(paste("package:", pkgname, sep=""), search())
     .initDynDocMethods(where)
 }
