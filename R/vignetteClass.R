@@ -15,7 +15,7 @@ getVignette <- function(vigPath) {
             vigPkg <- "None"
         else {
             vigPkg <- vigInfo$VignettePackage
-            if (vigPkg %IN% installed.packages()[,"Package"])
+            if (vigPkg %in% installed.packages()[,"Package"])
                 vigPkgVers <-
                     buildVersionNumber(package.description(vigPkg,
                                                            fields="Version"))
@@ -76,4 +76,8 @@ getVignette <- function(vigPath) {
                    standardGeneric("pkgVersion"), where=where)
     setMethod("pkgVersion", "Vignette", function(object)
               object@pkgVersion, where=where)
+
+}
+
+
 

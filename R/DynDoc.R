@@ -2,6 +2,7 @@
     .initSweaveOptions(where)
     .initCodeChunk(where)
     .initChunkList(where)
+    .initDynDoc(where)
     .initVignette(where)
 }
 

@@ -1,4 +1,6 @@
 .First.lib <- function(libname,pkgname,where) {
+    where <- match(paste("package:", pkgname, sep=""), search())
      require("Biobase")
-     .initVigClasses(where)
+     require("reposTools")
+     .initDynDocClasses(where)
 }
