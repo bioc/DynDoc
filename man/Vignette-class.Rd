@@ -49,7 +49,7 @@ Class \code{"DynDoc"}, directly.
   package.
   }
 \author{Jeff Gentry}
-\seealso{\code{\link{DynDoc}}, \code{\link{Sweave}}}
+\seealso{\code{\link{DynDoc-class}}, \code{\link{Sweave}}}
 \examples{
 ##---- Should be DIRECTLY executable !! ----
 }
