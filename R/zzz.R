@@ -3,4 +3,5 @@
      require("Biobase")
      require("reposTools")
      .initDynDocClasses(where)
+     .initVignetteCode(where)
 }
