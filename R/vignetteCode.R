@@ -137,12 +137,11 @@ setMethod("show","vignetteCode", function(object) {
 
 
 .initDynDocMethods <- function(where) {
-    if (is.null(getGeneric("package")))
-    setGeneric("package", function(object)
-               standardGeneric("package"), where=where)
+        setGeneric("package", function(object)
+                   standardGeneric("package"), where=where)
 
     setMethod("package", "vignetteCode", function(object)
-          object@package, where=where)
+              object@package, where=where)
 
     setMethod("package", "Vignette", function(object)
               object@package, where=where)
