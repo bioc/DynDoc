@@ -225,12 +225,16 @@ checkVignetteFile <- function(vig) {
     if (! file.exists(vig))
         stop("File ", vig, " does not exist.")
 
+    ## !!!! The following code is too harsh, need to find something
+    ## !!!! else here.  listFilesWithType requires a built index
+    ## !!!! file, and that's all it really checks.
+
     ## Double check this against whether or not tools thinks
     ## this is a vignette file
-    vigDir <- dirname(vig)
-    dirVigs <- listFilesWithType(vigDir, "vignette")
-    if (! vig %in% basename(dirVigs))
-        stop("File ", vig, " is not a vignette file.")
+    ##    vigDir <- dirname(vig)
+##    dirVigs <- listFilesWithType(vigDir, "vignette")
+##    if (! vig %in% basename(dirVigs))
+##        stop("File ", vig, " is not a vignette file.")
 
     return(TRUE)
 }
