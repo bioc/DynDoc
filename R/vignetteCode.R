@@ -29,7 +29,7 @@ editVignetteCode <- function(vigCode, pos, code) {
     newVig <- new("vignetteCode",
                   chunkList=chunks,
                   path=path(vigCode),
-                  depends=depends(vigCode),
+                  depends=getDepends(vigCode),
                   package=package(vigCode),
                   evalEnv=copyEnv(evalEnv(vigCode)))
     return(newVig)
