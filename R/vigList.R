@@ -115,7 +115,7 @@ print.pkgFileList <- function(x,...) {
 
         z <- try(writeLines(formatDL(VIE, VT),outConn))
 
-        if (inherits(z, "try-error")) {
+        if (is(z, "try-error")) {
             stop("Vignette ", x[[i]]$vigPath,
                  " appears to have a malformed VignetteIndexEntry",
                  " or VignetteTitle")

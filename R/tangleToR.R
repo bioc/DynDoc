@@ -118,7 +118,7 @@ tangleToRFinish <- function(object, error=FALSE)
             out <- try(.Internal(eval.with.vis(ce,
                                                env,
                                                NULL)))
-             if(inherits(out,"try-error")) {
+             if(is(out,"try-error")) {
                  sink()
                  close(tmpCon)
                  stop(out)

@@ -123,7 +123,7 @@ setMethod("evalChunk","vignetteCode", function(object, pos) {
         out <- try(.Internal(eval.with.vis(ce,
                                            object@evalEnv,
                                            NULL)))
-        if(inherits(out,"try-error")) {
+        if(is(out,"try-error")) {
             sink()
             close(tmpCon)
             stop(out)
