@@ -131,7 +131,7 @@ getVigInfo <- function(vig,pkg=NULL, vigDescFun=baseVigDesc, pkgVers=TRUE) {
     listNames <- unlist(lapply(splitLines, getVigInfoNames, listNames))
     newLst <- lapply(splitLines,transformVigInfoLine)
     ## Remove any NAs from thinkgs like \VignetteXXX{}
-    newLst <- lapply(newLst,function(x){if(is.na(x)) NULL else x})
+    newLst <- lapply(newLst,function(x){if(is.na(x[1])) NULL else x})
     names(newLst) <- listNames
 
     ## Add in the path starting from the package base
