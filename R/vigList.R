@@ -139,8 +139,16 @@ print.pkgFileList <- function(x,...) {
             out <- x[[i]]$OutString
             writeLines(paste(ifelse(first,"","\n\n"),out,sep=""),outConn)
         }
-        writeLines(formatDL(x[[i]]$VignetteIndexEntry,
-                            x[[i]]$VignetteTitle), outConn)
+
+        z <- try(writeLines(formatDL(x[[i]]$VignetteIndexEntry,
+                                     x[[i]]$VignetteTitle), outConn))
+
+        if (inherits(z, "try-error")) {
+            stop("Vignette ", x[[i]]$vigPath,
+                 " appears to have a malformed VignetteIndexEntry",
+                 " or VignetteTitle")
+        }
+
         first <- FALSE
     }
     if (first) {
