@@ -68,7 +68,7 @@ getVigInfo <- function(vig,pkg=NULL, vigDescFun=baseVigDesc, pkgVers=TRUE) {
     ## Grab the title as well
     ## !! Should just be merged in with lines above, but need to
     ## figure out generic regexps for the string handling
-    line <- grep("\\title{",file)
+    line <- grep("\\title\\{",file)
     if (length(line) > 0) {
         splitLine <- strsplit(file[line],"{", fixed=TRUE)
         tmpTitle <- transformVigInfoLine(splitLine[[1]])
