@@ -1,5 +1,5 @@
 getPkgVigList <- function(pkg,vigDescFun=baseVigDesc,
-                          vigPath="/doc/",vigExt="\\.(Rnw|Snw|rnw|snw)$",
+                          vigPath="/doc/",vigExt="\\.(Rnw|Rtex|Snw|rnw|snw)$",
                           pkgVers=TRUE) {
     pkgVigList <- list()
     class(pkgVigList) <- "pkgFileList"
@@ -86,7 +86,7 @@ getVigInfo <- function(vig,pkg=NULL, vigDescFun=baseVigDesc, pkgVers=TRUE) {
 
     ## Determine if there is a PDF file for this vignette, if so get
     ## the filename
-    pdfFile <- gsub("\\.(Rnw|Snw|rnw|snw)$",".pdf",vig)
+    pdfFile <- gsub("\\.(Rnw|Rtex|Snw|rnw|snw)$",".pdf",vig)
     if (file.exists(pdfFile)) {
         newLst$PDFpath <- pdfFile
     }
