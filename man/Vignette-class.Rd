@@ -2,6 +2,8 @@
 \docType{class}
 \alias{Vignette-class}
 \alias{pkgVersion}
+\alias{pkgVersion,Vignette-method}
+\alias{vigPackage,Vignette-method}
 \title{A Class To Represent Vignettes}
 \description{This is a class that will represent a vignette file in R,
   it extends the DynDoc class}

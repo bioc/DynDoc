@@ -5,8 +5,20 @@
 \alias{getDepends}
 \alias{evalChunk}
 \alias{evalEnv}
-\alias{package}
+\alias{vigPackage}
 \alias{path}
+\alias{show,vignetteCode-method}
+\alias{chunkList,vignetteCode-method}
+\alias{chunks,vignetteCode-method}
+\alias{evalChunk,vignetteCode-method}
+\alias{evalEnv,vignetteCode-method}
+\alias{getChunk,vignetteCode-method}
+\alias{getDepends,vignetteCode-method}
+\alias{numChunks,vignetteCode-method}
+\alias{path,vignetteCode-method}
+\alias{setChunk<-,vignetteCode-method}
+\alias{summary,vignetteCode-method}
+\alias{vigPackage,vignetteCode-method}
 \title{Class "vignetteCode"}
 \description{This class represents the code chunks and other related
   information from a vignette file.  It also provides for the ability to
@@ -51,7 +63,7 @@ from a vignette file.}
       object representing the specified code chunk position} 
     \item{numChunks}{\code{signature(object = "vignetteCode")}: Returns
       the number of chunks in the object }
-    \item{package}{\code{signature(object = "vignetteCode")}: Returns
+    \item{vigPackage}{\code{signature(object = "vignetteCode")}: Returns
       the package the vignette is a part of }
     \item{path}{\code{signature(object = "vignetteCode")}: Returns the
       local file path to the vignette }

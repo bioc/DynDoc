@@ -5,6 +5,13 @@
 \alias{chunk<-}
 \alias{chunk}
 \alias{chunkName}
+\alias{chunk<-,codeChunk-method}
+\alias{chunk,codeChunk-method}
+\alias{chunkName,codeChunk-method}
+\alias{evalChunk,codeChunk-method}
+\alias{getOptions,codeChunk-method}
+\alias{show,codeChunk-method}
+\alias{SweaveOptions,codeChunk-method}
 \title{Class "codeChunk"}
 \description{A class to wrap necessary information for a code chunk from
   a vignette file.}

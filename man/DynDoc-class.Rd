@@ -7,6 +7,21 @@
 \alias{getSuggests}
 \alias{indexEntry}
 \alias{codeChunks}
+\alias{summary,DynDoc-method}
+\alias{chunks,DynDoc-method}
+\alias{codeChunks,DynDoc-method}
+\alias{evalChunk,DynDoc-method}
+\alias{getChunk,DynDoc-method}
+\alias{getDepends,DynDoc-method}
+\alias{getKeywords,DynDoc-method}
+\alias{getRequires,DynDoc-method}
+\alias{getSuggests,DynDoc-method}
+\alias{indexEntry,DynDoc-method}
+\alias{numChunks,DynDoc-method}
+\alias{path,DynDoc-method}
+\alias{pdfPath,DynDoc-method}
+\alias{setChunk<-,DynDoc-method}
+\alias{show,DynDoc-method}
 \title{A Class For Dynamic Documents}
 \description{The DynDoc class is used to represent dynamic documents and
   vignettes in R.}

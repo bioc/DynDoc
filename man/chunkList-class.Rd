@@ -8,6 +8,15 @@
 \alias{setChunk}
 \alias{setChunk<-}
 \alias{numChunks}
+\alias{chunks,chunkList-method}
+\alias{evalChunk,chunkList-method}
+\alias{evalEnv,chunkList-method}
+\alias{getAllCodeChunks,chunkList-method}
+\alias{getChunk,chunkList-method}
+\alias{numChunks,chunkList-method}
+\alias{setChunk<-,chunkList-method}
+\alias{show,chunkList-method}
+\alias{summary,chunkList-method}
 \title{Class "chunkList"}
 \description{ This class is essentially a wrapper for the
   \code{codeChunk} class.  It contains all of the \code{codeChunks} from

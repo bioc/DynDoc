@@ -4,6 +4,10 @@
 \alias{SweaveOptions}
 \alias{getOptions}
 \alias{numOptions}
+\alias{codeChunk,SweaveOptions-method}
+\alias{getOptions,SweaveOptions-method}
+\alias{numOptions,SweaveOptions-method}
+\alias{show,SweaveOptions-method}
 \title{Class "SweaveOptions", a class to handle options in Sweave}
 \description{A small class designed to hold a set of Sweave options}
 \section{Objects from the Class}{
