@@ -239,39 +239,14 @@ vignetteDepends <- function(vig, recursive=TRUE, local=TRUE,
                             reduce=TRUE) {
     ## Will extract a list of package dependencies for a vignette
 
-    if (checkVignetteFile(vig)) {
-        vigDeps <- getVignetteHeader(vig, "VignetteDepends")
-        if ((length(vigDeps) == 1) && (!is.na(vigDeps))) {
-            ## Should have a valid field here
-            vigDeps <- strsplit(vigDeps[[1]],",[[:space:]]*")[[1]]
-            return(buildPkgDepList(vigDeps, recursive, local, reduce))
-        }
-        else
-            stop("Invalid VignetteDepends field in vignette file ",
-                 vig)
+    vigDeps <- getVignetteHeader(vig, "VignetteDepends")
+    if ((length(vigDeps) == 1) && (!is.na(vigDeps))) {
+        ## Should have a valid field here
+        vigDeps <- strsplit(vigDeps[[1]],",[[:space:]]*")[[1]]
+        return(buildPkgDepList(vigDeps, recursive, local, reduce))
     }
     else
-        stop("Invalid vignette file: ", vig)
-}
-
-checkVignetteFile <- function(vig) {
-    ## Some basic checks to make sure that a passed filename
-    ## exists and is really a vignette file
-
-    if (! file.exists(vig))
-        stop("File ", vig, " does not exist.")
-
-    ## !!!! The following code is too harsh, need to find something
-    ## !!!! else here.  listFilesWithType requires a built index
-    ## !!!! file, and that's all it really checks.
-
-    ## Double check this against whether or not tools thinks
-    ## this is a vignette file
-    ##    vigDir <- dirname(vig)
-##    dirVigs <- listFilesWithType(vigDir, "vignette")
-##    if (! vig %in% basename(dirVigs))
-##        stop("File ", vig, " is not a vignette file.")
-
-    return(TRUE)
+        stop("Invalid VignetteDepends field in vignette file ",
+             vig)
 }
 
