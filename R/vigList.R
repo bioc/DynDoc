@@ -11,7 +11,7 @@ getPkgVigList <- function(pkg,vigDescFun=baseVigDesc,
 
     vigPaths <- file.path(fullVPath,vigs)
     ## Take out any broken vignettes
-    vigPaths <- vigPaths[sapply(vigPaths,hasVignetteKeyword)]
+    vigPaths <- vigPaths[sapply(vigPaths,hasVigHeaderField)]
     vigs <- unlist(lapply(vigPaths,basename))
     if (length(vigPaths) == 0)
         return(NULL)
@@ -186,36 +186,72 @@ baseVigDesc <- function(vigInfo) {
     return(vigInfo)
 }
 
-hasVignetteKeyword <- function(vig,kw="VignetteIndexEntry") {
+hasVigHeaderField <- function(vig,field="VignetteIndexEntry") {
     ## A posisbly soon to be removed function that is now just a wrapper
-    ## around getVignetteKeyword and returns TRUE/FALSE based on
+    ## around getVignetteHeader and returns TRUE/FALSE based on
     ## the length of the return value
 
-    ret <- getVignetteKeyword(vig, kw)
+    ret <- getVignetteHeader(vig, field)
     if (length(ret) > 0)
         return(TRUE)
     else
         return(FALSE)
 }
 
-getVignetteKeyword <- function(vig, kw="VignetteIndexEntry") {
+getVignetteHeader <- function(vig, field) {
     ## Will retrieve the metadata information stored for a particular
     ## keyword (or an empty vector if it does not exist).
     if (checkVignetteFile(vig)) {
         file <- readLines(con=vig)
-        pattern <- paste("^[[:space:]]*%+[[:space:]]*\\\\",kw,sep="")
+        origPattern <- "^[[:space:]]*%+[[:space:]]*\\\\"
+        if (!missing(field))
+            pattern <- paste(origPattern,field,sep="")
+        else
+            pattern <- origPattern
 
         lines <- grep(pattern,file)
 
         if (length(lines) > 0) {
-            depOut <- strsplit(file[lines],"{")[[1]]
-            return(transformVigInfoLine(depOut))
+            ## Separate out the lines that are header and
+            ## then remove the header symbol
+            header <- file[lines]
+            header <- gsub(origPattern,"",header)
+            ## Remove the trailing '}'
+            header <- gsub("}","",header)
+            ## Now have format of 'tag{field'
+            splitHeader <- strsplit(header,"{")
+
+            headerList <- vector(mode="list",length=length(lines))
+            for (i in 1:length(lines)) {
+                names(headerList)[i] <- splitHeader[[i]][1]
+                headerList[[i]] <- splitHeader[[i]][2]
+            }
+            return(headerList)
         }
         else
-            return(character())
+            return(list())
     }
     else
-        return(character())
+        return(list())
+}
+
+vignetteDepends <- function(vig, recursive=TRUE, local=TRUE,
+                            reduce=TRUE) {
+    ## Will extract a list of package dependencies for a vignette
+
+    if (checkVignetteFile(vig)) {
+        vigDeps <- getVignetteHeader(vig, "VignetteDepends")
+        if ((length(vigDeps) == 1) && (!is.na(vigDeps))) {
+            ## Should have a valid field here
+            vigDeps <- strsplit(vigDeps[[1]],",[[:space:]]*")[[1]]
+            return(buildPkgDepList(vigDeps, recursive, local, reduce))
+        }
+        else
+            stop("Invalid VignetteDepends field in vignette file ",
+                 vig)
+    }
+    else
+        stop("Invalid vignette file: ", vig)
 }
 
 checkVignetteFile <- function(vig) {
