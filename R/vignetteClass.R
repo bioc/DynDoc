@@ -56,22 +56,6 @@ getVignette <- function(vigPath) {
     return(NULL)
 }
 
-
-
-editVignetteCode <- function(vigCode, pos, code) {
-    chunks <- chunkList(vigCode)
-    setChunk(chunks, pos) <- code
-
-    newVig <- new("vignetteCode",
-                  chunkList=chunks,
-                  path=path(vigCode),
-                  depends=depends(vigCode),
-                  package=package(vigCode),
-                  evalEnv=copyEnv(evalEnv(vigCode)))
-    return(newVig)
-}
-
-
 .initVignette <- function(where) {
     if (is.null(getGeneric("Vignette")))
         setGeneric("Vignette", function(object)
