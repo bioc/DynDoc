@@ -263,37 +263,6 @@ baseVigDesc <- function(vigInfo) {
     return(vigInfo)
 }
 
-##open a selected Vignette
-openVignette <- function(package) {
-    if( !missing(package) ) {
-        if( !is.character(package) )
-            stop("package list must be a character vector")
-        vigList <- vignette(package=package, character.only=TRUE)
-    }
-    else
-        vigList <- vignette()
-
-    ## Filter out any w/o PDFs
-    vigList <- vigList[sapply(vigList,function(x){
-        if ((!is.null(x$PDFpath))&&(!is.na(x$PDFpath)))
-            return(TRUE)
-        else
-            return(FALSE)})]
-    vigNames <- as.character(lapply(vigList,
-                                    function(x){
-                                        if (x$VignetteTitle == "Untitled")
-                                            return(paste(" ",
-                                                         x$VignetteIndexEntry))
-                                        else
-                                            return(paste(" ",
-                                                         x$VignetteTitle))
-                                    }))
-
-    index <- menu(vigNames,
-              title="Please select (by number) a vignette")
-    openPDF(vigList[[index]]$PDFpath)
-  }
-
 hasVignetteKeyword <- function(vig,kw="VignetteIndexEntry") {
     file <- readLines(con=vig)
     pattern <- paste("^[[:space:]]*%+[[:space:]]*\\\\",kw,sep="")

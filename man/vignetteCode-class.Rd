@@ -2,7 +2,7 @@
 \docType{class}
 \alias{vignetteCode-class}
 \alias{vignetteCode}
-\alias{depends}
+\alias{getDepends}
 \alias{evalChunk}
 \alias{evalEnv}
 \alias{package}
@@ -24,7 +24,7 @@ from a vignette file.}
       the vignette file }
     \item{\code{package}:}{Object of class \code{"character"} The
       package (if appropriate) that the vignette came from }
-    \item{\code{depends}:}{Object of class \code{"character"} Any
+    \item{\code{getDepends}:}{Object of class \code{"character"} Any
       package dependencies for the vignette }
     \item{\code{evalEnv}:}{Object of class \code{"environment"} An
       environment used for evaulation of the code chunks.}
@@ -39,7 +39,7 @@ from a vignette file.}
     \item{chunks}{\code{signature(object = "vignetteCode")}: Retrieves
       the actual code chunks (not wrapped by the \code{chunkList}
       class)} 
-    \item{depends}{\code{signature(object = "vignetteCode")}: Returns
+    \item{getDepends}{\code{signature(object = "vignetteCode")}: Returns
       the list of package dependencies for this vignette}
     \item{evalChunk}{\code{signature(object =
 	"vignetteCode",pos="numeric")}: Will evaulate the specified code
