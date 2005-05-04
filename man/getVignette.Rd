@@ -20,6 +20,4 @@ getVignette(vigPath, eval = TRUE)
 }
 \author{Jeff Gentry}
 \seealso{\code{\link{Vignette-class}}}
-\examples{
-}
 \keyword{utilities}

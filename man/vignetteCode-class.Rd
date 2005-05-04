@@ -78,7 +78,4 @@ from a vignette file.}
 \author{Jeff Gentry}
 \seealso{\code{\link{Sweave}}, \code{\link{getVignetteCode}},
   \code{\link{editVignetteCode}}, \code{\link{chunkList}}}
-\examples{
-##---- Should be DIRECTLY executable !! ----
-}
 \keyword{classes}

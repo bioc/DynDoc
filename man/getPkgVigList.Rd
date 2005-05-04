@@ -12,7 +12,7 @@
 }
 \usage{
 getPkgVigList(pkg, vigDescFun=baseVigDesc, vigPath = "/doc/", 
-vigExt="\\.(Rnw|Snw|rnw|snw)$", pkgVers = TRUE)
+vigExt="\\.(Rnw|Snw|rnw|snw|Rtex)$", pkgVers = TRUE)
 
 getVigInfo(vig,pkg=NULL, vigDescFun=baseVigDesc, pkgVers=TRUE)
 }
@@ -45,8 +45,11 @@ getVigInfo(vig,pkg=NULL, vigDescFun=baseVigDesc, pkgVers=TRUE)
 \author{Jeff Gentry}
 \seealso{\code{\link{vignette}}}
 \examples{
+\dontrun{
+   ## We need a vignette for this to work
    dynPath <- .path.package("DynDoc")
    vigList <- getPkgVigList(dynPath)
    vigList
+}
 }
 \keyword{utilities}

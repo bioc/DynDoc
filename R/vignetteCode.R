@@ -1,5 +1,4 @@
 getVignetteCode <- function(vigPath,evalEnv=new.env()) {
-    require(tools) || stop("Requires package tools")
     chunkList <- Stangle(vigPath,driver=tangleToR)
     vigInfo <- getVigInfo(vigPath)
     if ((!is.null(chunkList))&&(!is.null(vigInfo))) {
@@ -148,13 +147,13 @@ setMethod("show","vignetteCode", function(object) {
 })
 
 
-.initDynDocMethods <- function(where) {
-    setGeneric("vigPackage", function(object)
-               standardGeneric("vigPackage"), where=where)
 
-    setMethod("vigPackage", "vignetteCode", function(object)
-              object@vigPackage, where=where)
+setGeneric("vigPackage", function(object)
+           standardGeneric("vigPackage"))
 
-    setMethod("vigPackage", "Vignette", function(object)
-              object@vigPackage, where=where)
-}
+setMethod("vigPackage", "vignetteCode", function(object)
+          object@vigPackage)
+
+setMethod("vigPackage", "Vignette", function(object)
+          object@vigPackage)
+

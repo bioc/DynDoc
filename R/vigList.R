@@ -1,5 +1,5 @@
 getPkgVigList <- function(pkg,vigDescFun=baseVigDesc,
-                          vigPath="/doc/",vigExt="\\.(Rnw|Rtex|Snw|rnw|snw)$",
+                          vigPath="/doc/",vigExt="\\.(Rnw|Snw|rnw|snw|Rtex)$",
                           pkgVers=TRUE) {
     pkgVigList <- list()
     class(pkgVigList) <- "pkgFileList"

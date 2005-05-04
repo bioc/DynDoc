@@ -50,7 +50,4 @@ Class \code{"DynDoc"}, directly.
   }
 \author{Jeff Gentry}
 \seealso{\code{\link{DynDoc-class}}, \code{\link{Sweave}}}
-\examples{
-##---- Should be DIRECTLY executable !! ----
-}
 \keyword{classes}

@@ -32,6 +32,4 @@ editVignetteCode(vigCode, pos, code)
 \author{Jeff Gentry}
 \seealso{\code{\link{Sweave}},\code{\link{vignetteCode}},\code{\link{tangleToR}}}
 
-\examples{
-}
 \keyword{utilities}

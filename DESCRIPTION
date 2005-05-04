@@ -1,9 +1,9 @@
 Package: DynDoc
-Title:  Dynamic document tools 
-Version: 1.5.3
+Title: Dynamic document tools 
+Version: 1.5.4
 Author: R. Gentleman, Jeff Gentry
 Description: A set of functions to create and interact with dynamic documents and vignettes.
-Depends: tools
+Depends: methods, tools
 Maintainer:  Seth Falcon <sfalcon@fhcrc.org>
 License: LGPL
-
+SaveImage: Yes

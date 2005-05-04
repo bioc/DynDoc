@@ -2,7 +2,6 @@ getVignette <- function(vigPath,eval=TRUE) {
     ## !!! Needs a lot of work right now, this can be made a lot
     ## !!! smarter.  The 'vigInfo' thing also needs to be looked at.
 
-    require(tools) || stop("Requires package tools")
     chunkList <- Stangle(vigPath,driver=tangleToR)
 
     ## !! Stangle seems to cut out if no code chunks and return

@@ -84,7 +84,4 @@
 }
 \author{Jeff Gentry}
 \seealso{\code{\link{Sweave}}}
-\examples{
-##---- Should be DIRECTLY executable !! ----
-}
 \keyword{classes}

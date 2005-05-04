@@ -26,8 +26,4 @@ hasVigHeaderField(vig, field="VignetteIndexEntry")
   exists or not.
 }
 \author{Jeff Gentry}
-\examples{
-
-   ## !! Need a working vignette somewhere to work this on
-}
 \keyword{utilities}

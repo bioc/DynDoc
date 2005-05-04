@@ -30,7 +30,4 @@ Objects can be created by calls of the form \code{new("SweaveOptions", ...)}.
 }
 \author{Jeff Gentry}
 \seealso{\code{\link{Sweave}}, \code{\link{codeChunk}}}
-\examples{
-##!!! Need an example here
-}
 \keyword{classes}
