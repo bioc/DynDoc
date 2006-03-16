@@ -5,7 +5,7 @@ Author: R. Gentleman, Jeff Gentry
 Description: A set of functions to create and interact with dynamic
         documents and vignettes.
 Depends: methods, tools, reposTools
-Maintainer: Seth Falcon <sfalcon@fhcrc.org>
+Maintainer: Biocore Team <biocpkgs@lists.fhcrc.org>
 License: LGPL
 SaveImage: Yes
 Collate: tangleToR.R DynDoc.R vignetteClass.R vigList.R vignetteCode.R
