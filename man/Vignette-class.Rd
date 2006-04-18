@@ -44,7 +44,7 @@ Class \code{"DynDoc"}, directly.
       the version of the package that this vignette is associated with}
   }
 }
-\notes{The \code{Vignette} class is extending the \code{DynDoc} class by
+\note{The \code{Vignette} class is extending the \code{DynDoc} class by
   further associating the \code{DynDoc} concepts with a specific R
   package.
   }
