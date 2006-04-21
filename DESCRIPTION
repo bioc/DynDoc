@@ -9,4 +9,5 @@ Maintainer: Biocore Team <biocpkgs@lists.fhcrc.org>
 License: LGPL
 SaveImage: Yes
 Collate: tangleToR.R DynDoc.R vignetteClass.R vigList.R vignetteCode.R
+biocViews: ReportWriting
 
