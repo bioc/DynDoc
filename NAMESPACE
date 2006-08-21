@@ -1,3 +1,4 @@
+import(methods)
 
 exportClasses(chunkList, codeChunk, DynDoc, SweaveOptions, Vignette, vignetteCode)
 
