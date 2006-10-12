@@ -54,12 +54,9 @@ Objects can be created by calls of the form \code{new("codeChunk", ...)}.
 \seealso{\code{\link{Sweave}}, \code{\link{SweaveOptions}}, \code{\link{chunkList}}}
 
 \examples{
-    library(tools)
-    testfile <- file.path(.path.package("tools"),
-                           "Sweave", "Sweave-test-1.Rnw")
-    if (file.exists(testfile)) {
-        z <- Stangle(testfile,driver=tangleToR)
-        getChunk(z,1)
-    }
+    require("utils")
+    testfile <- system.file("Sweave", "Sweave-test-1.Rnw", package="utils")
+    z <- Stangle(testfile,driver=tangleToR)
+    getChunk(z,1)
 }
 \keyword{classes}

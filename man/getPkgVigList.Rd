@@ -47,7 +47,7 @@ getVigInfo(vig,pkg=NULL, vigDescFun=baseVigDesc, pkgVers=TRUE)
 \examples{
 \dontrun{
    ## We need a vignette for this to work
-   dynPath <- .path.package("DynDoc")
+   dynPath <- system.file(package="DynDoc")
    vigList <- getPkgVigList(dynPath)
    vigList
 }

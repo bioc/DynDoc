@@ -58,10 +58,8 @@ Objects can be created by calls of the form \code{new("chunkList", ...)}.
 \seealso{\code{\link{Sweave}}, \code{\link{codeChunk}}, \code{\link{vignetteCode}}}
 
 \examples{
-    library(tools)
-    testfile <- file.path(.path.package("tools"),
-                           "Sweave", "Sweave-test-1.Rnw")
-    if (file.exists(testfile))
-        z <- Stangle(testfile,driver=tangleToR)
+    library("utils")
+    testfile <- system.file("Sweave", "Sweave-test-1.Rnw", package="utils")
+    z <- Stangle(testfile,driver=tangleToR)
 }
 \keyword{classes}

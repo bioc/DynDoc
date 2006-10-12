@@ -21,11 +21,9 @@ tangleToR()
 \seealso{\code{\link{Stangle}},\code{\link{Sweave}}, \code{\link{chunkList}}}
 
 \examples{
-    library(tools)
-    testfile <- file.path(.path.package("tools"),
-                           "Sweave", "Sweave-test-1.Rnw")
-    if (file.exists(testfile))
-        z <- Stangle(testfile,driver=tangleToR)
+    require("utils")
+    testfile <- system.file("Sweave", "Sweave-test-1.Rnw", package="utils")
+    z <- Stangle(testfile,driver=tangleToR)
 }
 \keyword{utilities}
 
