@@ -158,7 +158,7 @@ transformVigInfoLine <- function(el) {
             names[entry] <- vigList[[i]]$PDFpath
         }
     }
-   return(gsub("\/\/","\/",names))
+   return(gsub("//", "/", names))
 }
 
 getVigInfoNames <- function(el,nmVec) {
