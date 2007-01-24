@@ -56,8 +56,10 @@ getVignette <- function(vigPath,eval=TRUE) {
     return(NULL)
 }
 
+setOldClass("package_version")
+
     setClass("Vignette", representation(package="character",
-                                        vigPkgVersion="VersionNumber"),
+                                        vigPkgVersion="package_version"),
              contains="DynDoc")
 
 
