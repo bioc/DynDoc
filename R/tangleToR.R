@@ -57,7 +57,8 @@ tangleToRFinish <- function(object, error=FALSE)
               length(object@options))
 
     setMethod("show","SweaveOptions", function(object)
-              paste(options,collapse=","))
+              cat("Sweave options:\n",
+                  paste(object@options,collapse=", "), "\n"))
 
     setGeneric("codeChunk", function(object)
                standardGeneric("codeChunk"))
@@ -139,7 +140,7 @@ tangleToRFinish <- function(object, error=FALSE)
         cat("Code chunk",object@chunkName,":\n",
             paste(object@chunk,collapse="\n"),"\n")
         if (numOptions(object@options) > 0)
-            cat("Options:",object@options,"\n")
+            show(object@options)
     })
 
     setGeneric("chunkList", function(object)
