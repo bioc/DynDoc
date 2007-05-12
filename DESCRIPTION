@@ -8,7 +8,7 @@ Depends: methods, utils
 Imports: methods
 Maintainer: Biocore Team <biocpkgs@lists.fhcrc.org>
 License: Artistic License, Version 2.0
-SaveImage: Yes
+LazyLoad: Yes
 Collate: tangleToR.R DynDoc.R vignetteClass.R vigList.R vignetteCode.R zzz.R
 biocViews: ReportWriting
 
