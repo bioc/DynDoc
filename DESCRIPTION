@@ -6,7 +6,7 @@ Description: A set of functions to create and interact with dynamic
         documents and vignettes.
 Depends: methods, utils
 Imports: methods
-Maintainer: Biocore Team <biocpkgs@lists.fhcrc.org>
+Maintainer: Biocore Team c/o BioC user list <bioconductor@stat.math.ethz.ch>
 License: Artistic License, Version 2.0
 LazyLoad: Yes
 Collate: tangleToR.R DynDoc.R vignetteClass.R vigList.R vignetteCode.R zzz.R
