@@ -12,7 +12,7 @@
 }
 \usage{
 getPkgVigList(pkg, vigDescFun=baseVigDesc, vigPath = "/doc/", 
-vigExt="\\.(Rnw|Snw|rnw|snw|Rtex)$", pkgVers = TRUE)
+vigExt="\\\.(Rnw|Snw|rnw|snw|Rtex)$", pkgVers = TRUE)
 
 getVigInfo(vig,pkg=NULL, vigDescFun=baseVigDesc, pkgVers=TRUE)
 }
