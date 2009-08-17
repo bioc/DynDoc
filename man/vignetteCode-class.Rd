@@ -34,9 +34,9 @@ from a vignette file.}
       the code chunks from the vignette file}
     \item{\code{path}:}{Object of class \code{"character"} The path of
       the vignette file }
-    \item{\code{package}:}{Object of class \code{"character"} The
+    \item{\code{vigPackage}:}{Object of class \code{"character"} The
       package (if appropriate) that the vignette came from }
-    \item{\code{getDepends}:}{Object of class \code{"character"} Any
+    \item{\code{depends}:}{Object of class \code{"character"} Any
       package dependencies for the vignette }
     \item{\code{evalEnv}:}{Object of class \code{"environment"} An
       environment used for evaluation of the code chunks.}
