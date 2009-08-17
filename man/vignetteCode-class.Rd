@@ -39,7 +39,7 @@ from a vignette file.}
     \item{\code{getDepends}:}{Object of class \code{"character"} Any
       package dependencies for the vignette }
     \item{\code{evalEnv}:}{Object of class \code{"environment"} An
-      environment used for evaulation of the code chunks.}
+      environment used for evaluation of the code chunks.}
   }
 }
 \section{Methods}{

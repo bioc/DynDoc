@@ -27,8 +27,10 @@ Objects can be created by calls of the form \code{new("chunkList", ...)}.
 \section{Slots}{
   \describe{
     \item{\code{chunks}:}{Object of class \code{"list"} Stores a list of
-    \code{codeChunk} objects, representing all of the code chunks from a
-  vignette file.}
+      \code{codeChunk} objects, representing all of the code chunks from a
+      vignette file.}
+    \item{\code{evalEnv}:}{Object of class \code{"environment"} An
+      environment used for evaluation of the code chunks.}
   }
 }
 
