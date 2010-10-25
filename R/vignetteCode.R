@@ -31,7 +31,7 @@ editVignetteCode <- function(vigCode, pos, code) {
     {
 
         oldVals <- as.list(oldEnv, all.names)
-        l2e(oldVals, newEnv)
+        list2env(oldVals, newEnv)
     }
 
     chunks <- chunkList(vigCode)
